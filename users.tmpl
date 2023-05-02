@@ -1,0 +1,13 @@
+--- # loops playbook
+- hosts: all
+  become: yes
+
+  tasks:
+    - name: add a list of users
+      user: name='{{item}}' state=${status}
+      with_items:
+      %{ for user in names ~}
+        - ${user}
+      %{ endfor ~}
+
+
